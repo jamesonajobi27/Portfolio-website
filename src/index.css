@@ -1,0 +1,120 @@
+:root{
+    --primary-100: #FEFFFF;
+    --primary-200: #DEF2F1;
+    --primary-300: #3AAFA9;
+    --primary-400: #2B7A78;
+    --primary-500: #17252A;
+  
+}
+
+body{
+    background-color: #DEF2F1;
+    margin: 0px;
+    padding:0px;
+
+}
+.Navbar{
+    display:flex;
+    flex-direction: row;
+    background-color:#2B7A78;
+    justify-content: right;
+}
+.link{
+   font-size: 25px;
+   text-decoration: none;
+   background-color: #DEF2F1;
+   color: #17252A;
+   padding: 5px;
+   width: 15%;
+   text-align: center;
+   margin: 10px 30px;
+   border-radius: 3px;
+   /* font-family: 'Zen Antique Soft', serif; */
+   font-family: 'El Messiri', sans-serif;
+}
+.Home{
+    display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin : 8% 8%;
+     border-radius: 10px;
+}
+.Myprofilepic{
+    border-radius: 1000px;
+    height: 300px;
+    width: auto;
+    border: 2px solid #17252A;
+}
+p{
+    font-size: 23px;
+    color:#17252A;
+    margin:0px;
+    font-family: 'El Messiri', sans-serif;
+    letter-spacing: 2px;
+    text-align: justify;
+}
+span{
+    font-size: 40px;
+    color: #2B7A78;
+    margin: 0px;
+    font-family: 'El Messiri', sans-serif;
+}
+.bio{
+    margin-left: 40px;
+}
+h3{
+    color:black
+}
+
+
+.loading{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 190px;
+    font-family: 'El Messiri', sans-serif;
+    color: #17252A;
+    font-weight: lighter;
+    font-size: 40px;
+}
+.DesignOneRepo{
+    color: #17252A;
+    padding: 10px;
+     text-transform: uppercase;
+    font-family: 'El Messiri', sans-serif;
+     border: 2px solid #17252A;
+     border-radius: 5%;
+    width: 250px;
+    height:40px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px;
+    cursor:pointer;
+    text-decoration: none;
+}
+.DesignAllRepo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-decoration: none;
+    list-style-type: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.DesignAllRepoContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+}
+.DesignAllRepoContent .Content{
+    width:90%;
+    font-size: 23px;
+    color:#17252A;
+    margin:40px;
+    font-family: 'El Messiri', sans-serif;
+    letter-spacing: 2px;
+    text-align: justify;
+}
