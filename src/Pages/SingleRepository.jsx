@@ -18,9 +18,14 @@ React.useEffect(
 
         }
         Me()
-    }
+    } 
     
 ,[])
+     if(loading === false){
+        const DisplayOneRepo = repoData.find(Repo => OneRepo == Repo.id)
+         console.log(DisplayOneRepo)
+     }
+
 
     return(loading ? <h1 className="loading"><div>Loading...</div></h1> : <h1>{OneRepo} </h1> )
 

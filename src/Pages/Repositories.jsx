@@ -39,7 +39,7 @@ export default function Repositories(){
       }
          
       let ShowAllProjects = repoData.map((item) => {return <DesignOneRepo props={item}/>})
-
+    
 
     return(loading ? <h1 className="loading"><div>Loading...</div></h1> :  
     <div className="DesignAllRepoContent">
