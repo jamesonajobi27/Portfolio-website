@@ -26,9 +26,14 @@ export default function Repositories(){
 
       function DesignOneRepo(props){
 
-          let {name,id} = props.props
+          let {name,id,description} = props.props
+          let me
+
           return(
-          <Link   className="DesignOneRepo"  to={`/Repositories/${id}`}>{name}</Link>
+          <Link   className="DesignOneRepo"  to={`/Repositories/${id}`}>
+            <div className="name">{name}</div>
+              { description == null ?  <div className="Description">None</div> :  <div className="Description">{description}</div>}
+          </Link>
         
         )
       }
