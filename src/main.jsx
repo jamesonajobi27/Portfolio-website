@@ -6,10 +6,14 @@ import Shared from "../src/Components/SharedLayout"
 import Home from "../src/Pages/HomePage"
 import Repositories from "../src/Pages/Repositories"
 import SingleRespository from "../src/Pages/SingleRepository"
+import Error404 from "../src/Pages/404page"
+import ErrorBoundary from "../src/Components/ErrorBoundary"
+import TestingError from "../src/Pages/TestingError"
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
+    <ErrorBoundary>
      <Routes>
         <Route path='/' element={<Shared />} >
              <Route index element={<Home />}/>
@@ -17,7 +21,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
              <Route path="Repositories/:OneRepo"
               element={<SingleRespository />}
               />
+         <Route path="TestingError" element={<TestingError />}/>
         </Route>
+        <Route path="*" element={<Error404/>}/>
         </Routes>
+        </ErrorBoundary>
    </BrowserRouter>
 )

@@ -21,13 +21,44 @@ React.useEffect(
     } 
     
 ,[])
-     if(loading === false){
-        const DisplayOneRepo = repoData.find(Repo => OneRepo == Repo.id)
-         console.log(DisplayOneRepo)
+     
+
+     function DesignSingleRepo(){
+            const DisplayOneRepo = repoData.find(Repo => OneRepo == Repo.id)
+         console.log(DisplayOneRepo.language)
+         return(
+         <div className="DesignSingleRepo">
+               <div className="displayflex">
+                <label>Name:</label>
+                <h3>{DisplayOneRepo.name}</h3>
+            </div>
+            {DisplayOneRepo.description &&  <div className="displayflex">
+                <label>Desciption:</label>
+                <h3>{DisplayOneRepo.description}</h3>
+            </div>}
+            {DisplayOneRepo.language && <div className="displayflex">
+                <label>Most Used Language:</label>
+                <h3>{DisplayOneRepo.language}</h3>
+            </div>}
+    
+           <div className="displayflex">
+                <label>{`See Code :`}</label>
+                 <a target="-blank" href={`${DisplayOneRepo.html_url}`}><h3>{DisplayOneRepo.html_url}</h3></a>
+            </div>
+
+            <div className="displayflex">
+                <label>FORKED:</label>
+                <h3>{DisplayOneRepo.fork ? "Yess" : "Nooo"}</h3>
+            </div>
+    
+        
+            
+         </div>)
+
      }
 
 
-    return(loading ? <h1 className="loading"><div>Loading...</div></h1> : <h1>{OneRepo} </h1> )
+    return(loading ? <h1 className="loading"><div>Loading...</div></h1> : <DesignSingleRepo />)
 
 
 }

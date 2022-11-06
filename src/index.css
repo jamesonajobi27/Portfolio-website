@@ -75,11 +75,11 @@ span{
     font-size: 40px;
 }
 .DesignOneRepo{
-    color: #17252A;
-   
+    color:#DEF2F1;
+     background-color: #17252A;
      text-transform: uppercase;
     font-family: 'El Messiri', sans-serif;
-     border: 2px solid #2B7A78;
+     border: 2px solid #17252A;
      border-radius: 5%;
     border-radius: 5px;
     text-align: center;
@@ -114,8 +114,8 @@ span{
     text-align: justify;
 }
 .Description{
-    background-color: #17252ae5;
-    color: #DEF2F1;
+    background-color: #2B7A78;
+    color:#FEFFFF;
     margin: 5px;
     padding: 10px;
     border-radius: 5px;
@@ -127,4 +127,79 @@ span{
     /* font-size: 20px; */
     /* font-family: 'Kanit', sans-serif; */
     font-family: 'Chakra Petch', sans-serif;
+}
+.DesignSingleRepo{
+    display: flex;
+    flex-direction: column;
+    color: #3AAFA9;
+    background-color: #17252A;
+   padding:20px;
+   border-radius: 10px;
+    margin:  10% 150px;
+    box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+a{
+    color:#3AAFA9;
+    margin: 0px;
+}
+.displayflex{
+    display: flex;
+    align-items: center;
+    font-family: 'Chakra Petch', sans-serif;
+    margin:0px;
+}
+label{
+    text-transform: uppercase;
+        font-family: 'Kanit', sans-serif;
+        padding: 10px;
+        margin:0px;
+}
+h3{
+    margin:0px;
+}
+.Error404{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'El Messiri', sans-serif;
+    margin: 90px;
+
+}
+.Error404 h1{
+    font-size: 140px;
+    margin: 0px;
+}
+.Error404 .link{
+    background-color: #17252A;
+    color:#DEF2F1;
+    border-radius: 5px;
+    padding: 20px;
+    border-bottom: none;
+    text-transform: uppercase;
+}
+.Error404 .link:hover{
+    background-color: #2B7A78;
+}
+.Error404 p{
+    font-size: 40px;
+    margin: 0px;
+}
+.Testingerror{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.Testingerror .link{
+    background-color: #17252A;
+    color:#DEF2F1;
+    border-radius: 5px;
+    padding: 20px;
+    border-bottom: none;
+    text-transform: uppercase;
+}
+.Testingerror .link:hover{
+    background-color: #2B7A78;
 }
