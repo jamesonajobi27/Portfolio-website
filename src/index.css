@@ -233,9 +233,10 @@ link{
     }
     p{
         margin-right:40px;
+        font-size: 15px;
     }
     .link{
-        font-size: small;
+        font-size: 15px;
     }
 }
 
