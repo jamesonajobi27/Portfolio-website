@@ -45,6 +45,7 @@ export default function Repositories(){
     <div className="DesignAllRepoContent">
       <div className="Content">My repositories comprises of My personal projects, Some projects I admired and wanted to see the code, And Some I contributed to. I am a 
         big fan of Open Source because no man is an island of knowledge we all share and collaborate.
+        <img alt="My Picture" src={"/website24.jpg"} className="Myprofilepic" />
       </div>
        <div className="DesignAllRepo"> {ShowAllProjects}</div>
 
