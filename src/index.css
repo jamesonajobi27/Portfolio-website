@@ -222,5 +222,18 @@ link{
     }
 }
 
+@media (min-width:320px) and (max-width:480px){
+    .Home{
+        flex-direction: column;
+        margin: 40px 0px;
+    }
+    .Myprofilepic{
+        margin-bottom: 30px;
+    }
+    p{
+        margin-right:40px;
+    }
+}
+
     
 }
