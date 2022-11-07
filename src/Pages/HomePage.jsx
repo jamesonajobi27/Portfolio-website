@@ -3,7 +3,7 @@ import React from "react"
 export default function Home(){
     return(
       <div className="Home">
-        <img alt="My Picture" src="Profilepic.png" className="Myprofilepic" />
+        <img alt="My Picture" src="/dancer.png" className="Myprofilepic" />
 
         <div className="bio">
           <span>Hi there,</span>
