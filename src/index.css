@@ -50,7 +50,7 @@ p{
     margin:0px;
     font-family: 'El Messiri', sans-serif;
     letter-spacing: 2px;
-    text-align: justify;
+    text-align: left;
 }
 span{
     font-size: 40px;
@@ -206,4 +206,21 @@ h3{
 
 link{
     border-radius: 100px;
+}
+
+
+@media (min-width:481px) and (max-width:780px){
+    .Home{
+        flex-direction: column;
+        margin: 40px 0px;
+    }
+    .Myprofilepic{
+        margin-bottom: 30px;
+    }
+    p{
+        margin-right:40px;
+    }
+}
+
+    
 }
