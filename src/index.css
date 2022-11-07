@@ -225,18 +225,65 @@ link{
 @media (min-width:320px) and (max-width:480px){
     .Home{
         flex-direction: column;
-        margin: 40px 0px;
+        margin: 30px 0px;
+    }
+    span{
+        font-size: 30px;
     }
     .Myprofilepic{
         margin-bottom: 30px;
         height: 200px;
     }
     p{
-        margin-right:40px;
+        margin-right:30px;
         font-size: 15px;
     }
     .link{
-        font-size: 20px;
+        font-size: 11px;
+        padding: 3px;
     }
+    .loading{
+        font-size: 25px;
+    }
+    .DesignAllRepoContent .Content{
+        font-size: 15px;
+        margin: 0px;
+        text-align: center;
+    }
+    .DesignAllRepoContent{
+        margin: 10px;
+
+    }
+
+    .DesignAllRepo{
+    flex-direction: column;
+    }
+    .DesignOneRepo{
+    width:260px;
+    }
+    .Description{
+        font-size: 10px;
+    }
+    .name{
+        font-size: smaller;
+    }
+.DesignSingleRepo{
+    width: 85%;
+    margin: 10px;
+    font-size: 10px;
+    padding: 0px;
+}
+label{
+    font-size: 10px;
+  
+}
+h3{
+    font-size: 9px;
+}
+.displayflex{
+    padding: 0px;
+    margin: 0px;
+}
+
 }
 
