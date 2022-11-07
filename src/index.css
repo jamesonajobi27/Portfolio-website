@@ -203,3 +203,7 @@ h3{
 .Testingerror .link:hover{
     background-color: #2B7A78;
 }
+
+.round{
+    border-radius: 100px;
+}
