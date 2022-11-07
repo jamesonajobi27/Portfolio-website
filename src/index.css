@@ -357,4 +357,68 @@ h3{
     
 
 }
+@media (min-width:0px) and (max-width:350px){
+    .Home{
+        flex-direction: column;
+        margin: 30px 0px;
+    }
+    span{
+        font-size: 20px;
+    }
+    .Myprofilepic{
+        margin-bottom: 30px;
+        height: 150px;
+    }
+    p{
+        margin-right:30px;
+        font-size: 13px;
+    }
+    .link{
+        font-size: 9px;
+        padding: 3px;
+    }
+    .loading{
+        font-size: 25px;
+    }
+    .DesignAllRepoContent .Content{
+        font-size: 13px;
+        margin: 0px;
+        text-align: center;
+    }
+    .DesignAllRepoContent{
+        margin: 10px;
+
+    }
+
+    /* .DesignAllRepo{
+    flex-direction: column;
+    } */
+    .DesignOneRepo{
+    width:230px;
+    }
+    .Description{
+        font-size: 8px;
+    }
+    .name{
+        font-size: smaller;
+    }
+.DesignSingleRepo{
+    width: 85%;
+    margin: 10px;
+    font-size: 6px;
+    padding: 0px;
+}
+label{
+    font-size: 7px;
+  
+}
+h3{
+    font-size: px;
+}
+.displayflex{
+    padding: 0px;
+    margin: 0px;
+}
+
+}
 
