@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
          <Route path="TestingError" element={<TestingError />}/>
          <Route path="*" element={<Error404/>}/>
         </Route>
-     
+        <Route path="*" element={<Error404/>}/>
         </Routes>
         </ErrorBoundary>
    </BrowserRouter>
