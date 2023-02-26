@@ -44,7 +44,7 @@ export default function ErrorBoundary({children}) {
   
     render() {
       return this.state.hasError
-        ? <div className="Testingerror"><h1 className="loading">There was an error</h1> <Link to="/"className="link">Return Home</Link></div>
+        ? <div className="Testingerror"><h1 className="loading">Sorry, there was an error. Revisit the website. Thank you</h1></div>
         : this.props.children; 
     }
 }
