@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom"
 
 export default function SingleRepository(){
     const {OneRepo} = useParams()
- 
+      console.log(OneRepo)
 
     const [repoData, setRepoData] = React.useState()
     let [loading, setLoading]  = React.useState(true)
@@ -25,7 +25,7 @@ React.useEffect(
 
      function DesignSingleRepo(){
             const DisplayOneRepo = repoData.find(Repo => OneRepo == Repo.id)
-         console.log(DisplayOneRepo.language)
+       
          return(
          <div className="DesignSingleRepo">
                <div className="displayflex">
