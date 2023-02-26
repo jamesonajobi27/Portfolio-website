@@ -22,10 +22,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               element={<SingleRespository />}
               />
          <Route path="TestingError" element={<TestingError />}/>
-         <Route path="*" element={<Error404/>}/>
         </Route>
-        <Route path="*" element={<Error404/>}/>
+         <Route path="*" element={<Error404/>}/>
         </Routes>
+        <Route path="*" element={<Error404/>}/>
         </ErrorBoundary>
    </BrowserRouter>
 )
