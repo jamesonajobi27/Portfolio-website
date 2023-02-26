@@ -6,7 +6,7 @@ import Shared from "../src/Components/SharedLayout"
 import Home from "../src/Pages/HomePage"
 import Repositories from "../src/Pages/Repositories"
 import SingleRespository from "../src/Pages/SingleRepository"
-import Error404 from "../src/Pages/404page"
+import Error404 from "../public/404page"
 import ErrorBoundary from "../src/Components/ErrorBoundary"
 import TestingError from "../src/Pages/TestingError"
 
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               element={<SingleRespository />}
               />
          <Route path="TestingError" element={<TestingError />}/>
-         {/* <Route path="*" element={<Error404/>}/> */}
+         <Route path="*" element={<Error404/>}/>
         </Route>
      
         </Routes>
