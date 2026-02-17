@@ -1,424 +1,269 @@
-:root{
-    --primary-100: #FEFFFF;
-    --primary-200: #DEF2F1;
-    --primary-300: #3AAFA9;
-    --primary-400: #2B7A78;
-    --primary-500: #17252A;
-  
+:root {
+  --primary-100: #f8fafc;
+  --primary-200: #dbeafe;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0f172a;
+  --surface: rgba(15, 23, 42, 0.82);
+  --surface-light: rgba(255, 255, 255, 0.9);
+  --text-main: #e2e8f0;
+  --text-dark: #0f172a;
 }
 
-body{
-    background-color: #DEF2F1;
-    margin: 0px;
-    padding:0px;
-
-}
-.Navbar{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.link{
-   font-size: 22px;
-   text-decoration:none;
-   color:#17252A;
-   text-align: center;
-   padding: 6px;
-   /* font-family: 'Chakra Petch', sans-serif; */
-   font-family: 'Alata', sans-serif;
-   margin: 10px 20px;
-   border-bottom: 2px solid #17252A;
+* {
+  box-sizing: border-box;
 }
 
-
-.Home{
-    display: flex;
-     justify-content: space-between;
-     align-items: center;
-     margin : 8% 8%;
-     border-radius: 10px;
-}
-.Myprofilepic{
-    border-radius: 1000px;
-    height: 300px;
-    width: auto;
-    border: 2px solid #17252A;
-}
-p{
-    font-size: 23px;
-    color:#17252A;
-    margin:0px;
-    font-family: 'El Messiri', sans-serif;
-    letter-spacing: 2px;
-    text-align: left;
-}
-span{
-    font-size: 40px;
-    color: #2B7A78;
-    margin: 0px;
-    font-family: 'El Messiri', sans-serif;
-}
-.bio{
-    margin-left: 40px;
-    font-family: 'Chakra Petch', sans-serif;
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-main);
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top right, #1d4ed8 0%, #0f172a 55%, #020617 100%);
 }
 
-.loading{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 190px;
-    font-family: 'El Messiri', sans-serif;
-    color: #17252A;
-    font-weight: lighter;
-    font-size: 40px;
+.pageShell {
+  min-height: 100vh;
 }
-.DesignOneRepo{
-    color:#DEF2F1;
-     background-color: #17252A;
-     text-transform: uppercase;
-    font-family: 'El Messiri', sans-serif;
-     border: 2px solid #17252A;
-     border-radius: 5%;
-    border-radius: 5px;
+
+.pageContent {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.Navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 1.2rem 0;
+  backdrop-filter: blur(12px);
+  background: rgba(2, 6, 23, 0.65);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.navInner {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.link {
+  text-decoration: none;
+  color: #bfdbfe;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(191, 219, 254, 0.4);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.link:hover,
+.linkActive {
+  color: #0f172a;
+  background: linear-gradient(135deg, #7dd3fc, #dbeafe);
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.heroBadge {
+  width: fit-content;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #0f172a;
+  background: linear-gradient(135deg, #7dd3fc, #dbeafe);
+}
+
+.homeBody {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.2rem;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.Myprofilepic {
+  border-radius: 999px;
+  width: min(320px, 38vw);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 4px solid rgba(125, 211, 252, 0.85);
+  box-shadow: 0 12px 28px rgba(56, 189, 248, 0.35);
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+span {
+  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
+  line-height: 1.25;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+p {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: #cbd5e1;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 8rem;
+  font-size: 2rem;
+}
+
+.sectionTitle {
+  color: #f8fafc;
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+}
+
+.DesignAllRepoContent {
+  padding: 2rem;
+  border-radius: 24px;
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.35);
+}
+
+.DesignAllRepoContent .Content {
+  margin: 1rem 0 1.8rem;
+}
+
+.DesignAllRepo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.DesignOneRepo {
+  text-decoration: none;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 18px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.DesignOneRepo:hover {
+  transform: translateY(-4px);
+  border-color: rgba(125, 211, 252, 0.8);
+}
+
+.name {
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.55rem;
+}
+
+.Description {
+  color: #cbd5e1;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 12px;
+  padding: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.DesignSingleRepo {
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.displayflex {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+label {
+  color: #7dd3fc;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+a {
+  color: #93c5fd;
+}
+
+.Error404,
+.Testingerror {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.Error404 h1 {
+  margin: 0;
+  font-size: clamp(4rem, 16vw, 8rem);
+}
+
+.Error404 .link,
+.Testingerror .link {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 760px) {
+  .pageContent {
+    width: min(1120px, 94%);
+  }
+
+  .homeBody {
+    flex-direction: column;
+    padding: 1.4rem;
     text-align: center;
-    margin: 10px;
-    cursor:pointer;
-    text-decoration: none;
-}
-.DesignAllRepo{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-decoration: none;
-    list-style-type: none;
+  }
+
+  .bio {
     align-items: center;
-    flex-wrap: wrap;
-}
-.DesignAllRepoContent{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 120px;
-  
-}
-.DesignAllRepoContent .Content{
-    width:90%;
-    font-size: 25px;
-  color: #17252A;
-    margin:30px;
-    font-family: 'El Messiri', sans-serif;
-    letter-spacing: 2px;
-    text-align: center;
-}
-.Description{
-    background-color: #2B7A78;
-    color:#FEFFFF;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
-    /* font-family: 'Kanit', sans-serif; */
-    font-family: 'Chakra Petch', sans-serif;
-}
-.name{
-    padding: 10px;
-    /* font-size: 20px; */
-    /* font-family: 'Kanit', sans-serif; */
-    font-family: 'Chakra Petch', sans-serif;
-}
-.DesignSingleRepo{
-    display: flex;
-    flex-direction: column;
-    color: #3AAFA9;
-    background-color: #17252A;
-   padding:20px;
-   border-radius: 10px;
-    margin:  10% 150px;
-    box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.2);
-}
-a{
-    color:#3AAFA9;
-    margin: 0px;
-}
-.displayflex{
-    display: flex;
-    align-items: center;
-    font-family: 'Chakra Petch', sans-serif;
-    margin:0px;
-}
-label{
-    text-transform: uppercase;
-        font-family: 'Kanit', sans-serif;
-        padding: 10px;
-        margin:0px;
-}
-h3{
-    margin:0px;
-}
-.Error404{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'El Messiri', sans-serif;
-    margin: 90px;
+  }
 
-}
-.Error404 h1{
-    font-size: 140px;
-    margin: 0px;
-}
-.Error404 .link{
-    background-color: #17252A;
-    color:#DEF2F1;
-    border-radius: 5px;
-    padding: 20px;
-    border-bottom: none;
-    text-transform: uppercase;
-}
-.Error404 .link:hover{
-    background-color: #2B7A78;
-}
-.Error404 p{
-    font-size: 40px;
-    margin: 0px;
-}
-.Testingerror{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .Myprofilepic {
+    width: min(260px, 60vw);
+  }
 
+  .DesignAllRepoContent,
+  .DesignSingleRepo {
+    padding: 1.2rem;
+  }
 }
-.Testingerror .link{
-    background-color: #17252A;
-    color:#DEF2F1;
-    border-radius: 5px;
-    padding: 20px;
-    border-bottom: none;
-    text-transform: uppercase;
-}
-.Testingerror .link:hover{
-    background-color: #2B7A78;
-}
-
-link{
-    border-radius: 100px;
-}
-
-
-@media (min-width:601px) and (max-width:835px){
-    .Home{
-        flex-direction: column;
-        margin: 40px 0px;
-    }
-    .Myprofilepic{
-        margin-bottom: 30px;
-    }
-    p{
-        margin-right:40px;
-    }
-   
-    .loading{
-        font-size: 25px;
-    }
-    .DesignAllRepoContent .Content{
-
-        margin: 0px;
-        text-align: center;
-        font-size: 25px;
-    }
-    .DesignAllRepoContent{
-        margin: 10px;
- 
-    }
-
- 
-    .DesignOneRepo{
-     margin-left: 40px;
-     margin-right: 30px;
-     width: 400px;
-     margin-top: 30px;
-    }
-    .Description{
-        font-size: 15px;
-    }
- 
-
-label{
-    font-size: 15px;
-  
-}
-h3{
-    font-size: 15px;
-}
-.displayflex{
-    padding: 0px;
-    margin: 0px;
-}
-}
-
-@media (min-width:320px) and (max-width:600px){
-    .Home{
-        flex-direction: column;
-        margin: 30px 0px;
-    }
-    span{
-        font-size: 30px;
-    }
-    .Myprofilepic{
-        margin-bottom: 30px;
-        height: 200px;
-    }
-    p{
-        margin-right:30px;
-        font-size: 15px;
-    }
-    .link{
-        font-size: 13px;
-        padding: 3px;
-    }
-    .loading{
-        font-size: 25px;
-    }
-    .DesignAllRepoContent .Content{
-        font-size: 15px;
-        margin: 0px;
-        text-align: center;
-    }
-    .DesignAllRepoContent{
-        margin: 10px;
-
-    }
-
-    /* .DesignAllRepo{
-    flex-direction: column;
-    } */
-    .DesignOneRepo{
-    width:260px;
-    }
-    .Description{
-        font-size: 10px;
-    }
-    .name{
-        font-size: smaller;
-    }
-.DesignSingleRepo{
-    width: 85%;
-    margin: 10px;
-    font-size: 10px;
-    padding: 0px;
-}
-label{
-    font-size: 10px;
-  
-}
-h3{
-    font-size: 9px;
-}
-.displayflex{
-    padding: 0px;
-    margin: 0px;
-}
-
-}
-@media (min-width:601px) and (max-width:700px){
-      /* .DesignAllRepo{
-    flex-direction: column;
-    } */
-    .DesignOneRepo{
-        width:260px;
-        }
-        .Description{
-            font-size: 10px;
-        }
-        .name{
-            font-size: smaller;
-        }
-    .DesignSingleRepo{
-        width: 85%;
-        margin: 10px;
-        font-size: 10px;
-        padding: 0px;
-    }
-    label{
-        font-size: 10px;
-      
-    }
-    h3{
-        font-size: 9px;
-    }
-    .displayflex{
-        padding: 0px;
-        margin: 0px;
-    }
-    
-
-}
-@media (min-width:0px) and (max-width:350px){
-    .Home{
-        flex-direction: column;
-        margin: 30px 0px;
-    }
-    span{
-        font-size: 20px;
-    }
-    .Myprofilepic{
-        margin-bottom: 30px;
-        height: 150px;
-    }
-    p{
-        margin-right:30px;
-        font-size: 13px;
-    }
-    .link{
-        font-size: 9px;
-        padding: 3px;
-    }
-    .loading{
-        font-size: 25px;
-    }
-    .DesignAllRepoContent .Content{
-        font-size: 13px;
-        margin: 0px;
-        text-align: center;
-    }
-    .DesignAllRepoContent{
-        margin: 10px;
-
-    }
-
-    /* .DesignAllRepo{
-    flex-direction: column;
-    } */
-    .DesignOneRepo{
-    width:230px;
-    }
-    .Description{
-        font-size: 8px;
-    }
-    .name{
-        font-size: smaller;
-    }
-.DesignSingleRepo{
-    width: 85%;
-    margin: 10px;
-    font-size: 6px;
-    padding: 0px;
-}
-label{
-    font-size: 7px;
-  
-}
-h3{
-    font-size: px;
-}
-.displayflex{
-    padding: 0px;
-    margin: 0px;
-}
-
-}
-

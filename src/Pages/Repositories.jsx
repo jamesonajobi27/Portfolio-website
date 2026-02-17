@@ -1,54 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+export default function Repositories() {
+  const [loading, setLoading] = React.useState(false);
+  const [repoData, setRepoData] = React.useState([]);
 
+  React.useEffect(() => {
+    async function getRepos() {
+      setLoading(true);
+      const response = await fetch("https://api.github.com/users/jamesonajobi27/repos");
+      const data = await response.json();
+      setRepoData(data);
+      data ? setLoading(false) : console.log("error");
+    }
 
+    getRepos();
+  }, []);
 
-export default function Repositories(){
+  function DesignOneRepo({ repo }) {
+    const { name, id, description } = repo;
 
-       let[loading, setLoading] = React.useState(false)
-       let [repoData, setRepoData] = React.useState([])
+    return (
+      <Link className="DesignOneRepo" to={`/Repositories/${id}`}>
+        <div className="name">{name}</div>
+        <div className="Description">{description ?? "No description provided"}</div>
+      </Link>
+    );
+  }
 
-      React.useEffect(
-    () => {
-        async function Me(){
-            setLoading(true)
-            const response = await fetch("https://api.github.com/users/jamesonajobi27/repos")
-            const data = await response.json();
-            setRepoData(data)
-            data ? setLoading(false) : console.log("error")
+  const showAllProjects = repoData.map((item) => (
+    <DesignOneRepo key={item.id} repo={item} />
+  ));
 
-        }
-        Me()
-
-    },[])
-
-
-      function DesignOneRepo(props){
-
-          let {name,id,description} = props.props
-          let me
-
-          return(
-          <Link   className="DesignOneRepo"  to={`/Repositories/${id}`}>
-            <div className="name">{name}</div>
-              { description == null ?  <div className="Description">None</div> :  <div className="Description">{description}</div>}
-          </Link>
-        
-        )
-      }
-         
-      let ShowAllProjects = repoData.map((item) => {return <DesignOneRepo props={item}/>})
-    
-
-    return(loading ? <h1 className="loading"><div>Loading...</div></h1> :  
-    <div className="DesignAllRepoContent">
-      <div className="Content">My repositories comprises of My personal projects, Some projects I admired and wanted to see the code, And Some I contributed to. I am a 
-        big fan of Open Source because no man is an island of knowledge we all share and collaborate.
+  return loading ? (
+    <h1 className="loading">
+      <div>Loading...</div>
+    </h1>
+  ) : (
+    <section className="DesignAllRepoContent">
+      <h1 className="sectionTitle">Repositories</h1>
+      <div className="Content">
+        My repositories include personal projects, cloned learning projects I admired,
+        and projects I&apos;ve contributed to. I&apos;m a strong fan of open source because
+        knowledge grows best when we share and collaborate.
       </div>
-       <div className="DesignAllRepo"> {ShowAllProjects}</div>
-
-    </div>
-    )
+      <div className="DesignAllRepo">{showAllProjects}</div>
+    </section>
+  );
 }
-
