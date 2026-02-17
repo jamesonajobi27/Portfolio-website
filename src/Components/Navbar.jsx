@@ -2,16 +2,16 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const navItems = [
-  { to: "/", label: "Dashboard", end: true },
+  { to: "/", label: "Home", end: true },
   { to: "/Repositories", label: "Projects" },
-  { to: "/TestingError", label: "Error Test" },
+  { to: "/TestingError", label: "System Test" },
 ];
 
 export default function Navbar() {
   return (
     <header className="Navbar">
       <div className="navInner">
-        <div className="brandTag">ENGR//PORTFOLIO</div>
+        <div className="brandTag">MECHATRONICS//PORTFOLIO</div>
         <nav aria-label="Main navigation" className="navLinks">
           {navItems.map(({ to, label, end }) => (
             <NavLink
