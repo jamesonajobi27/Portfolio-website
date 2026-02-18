@@ -24,3 +24,13 @@ The website link (https://portfolio-website-eta-neon.vercel.app/)
 3. Save and run the app (`npm run dev`) or build (`npm run build`) to confirm the new picture appears.
 
 Note: In Vite, files inside `public/` are referenced from the site root with `/filename`.
+
+
+## How the profile picture change works (internally)
+When the Home page renders, it reads the value in `PROFILE_IMAGE_PATH` from `src/Pages/HomePage.jsx` and passes it into the `<img>` tag as the `src`.
+
+- Current config is `const PROFILE_IMAGE_PATH = "/dancer.jpg"`.
+- Because Vite serves files inside `public/` from the web root, `"/dancer.jpg"` maps to `public/dancer.jpg`.
+- So if you change `PROFILE_IMAGE_PATH` to `"/my-new-photo.jpg"`, the app will load `public/my-new-photo.jpg`.
+
+In short: **`PROFILE_IMAGE_PATH` -> `<img src=...>` -> file in `public/` with the same filename**.
