@@ -20,8 +20,8 @@ export default function Navbar() {
 
   return (
     <header className="nav-shell">
-      <div className="nav-left">
-        <div className="brand">James Onajobi</div>
+      <div className="brand">James Onajobi</div>
+      <div className="nav-right">
         <nav className="Navbar" aria-label="Primary">
           <Link to="/" className="link">Home</Link>
           <Link to="/Repositories" className="link">Projects</Link>
