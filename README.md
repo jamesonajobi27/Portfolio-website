@@ -16,3 +16,11 @@ The website link (https://portfolio-website-eta-neon.vercel.app/)
 - **Data involved:** Yes — read-only consumption of public GitHub repository data.
 - **Login/auth:** Not implemented in this project.
 - **Security scope:** No backend auth/session handling; reliability focus is client-side crash containment via Error Boundary.
+
+
+## How to change the profile picture
+1. Add your new image file to `public/` (example: `public/my-new-photo.jpg`).
+2. Open `src/Pages/HomePage.jsx` and update `PROFILE_IMAGE_PATH` to your new file path (example: `"/my-new-photo.jpg"`).
+3. Save and run the app (`npm run dev`) or build (`npm run build`) to confirm the new picture appears.
+
+Note: In Vite, files inside `public/` are referenced from the site root with `/filename`.
