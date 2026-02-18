@@ -108,7 +108,6 @@ a {
   gap: 1.2rem;
 }
 
-.timeline-rail,
 .content-card,
 .project-card,
 .DesignSingleRepo,
@@ -121,129 +120,9 @@ a {
 
 
 
-.timeline-title {
-  margin: 0;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.home-layout-slider {
-  grid-template-columns: 220px 1fr;
-  align-items: start;
-  height: calc(100vh - 96px);
-}
-
-.timeline-left {
-  position: sticky;
-  top: 96px;
-  padding: 1rem;
-}
-
-.timeline-list {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  padding-bottom: 10px;
-}
-
-.timeline-list-vertical {
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  padding-bottom: 0;
-  padding-right: 10px;
-}
-
-.timeline-link {
-  text-decoration: none;
-  color: var(--text);
-  border: 1px dashed var(--border);
-  padding: 0.42rem 0.7rem;
-  border-radius: 12px;
-  font-size: 0.88rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: color 0.24s ease, border-color 0.24s ease;
-  background: color-mix(in srgb, var(--surface) 76%, transparent);
-  cursor: pointer;
-}
-
-.timeline-link.active {
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-}
-
-.timeline-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.timeline-indicator {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  transition: transform 260ms ease, width 260ms ease;
-  will-change: transform, width;
-}
-
-.timeline-link:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.home-slides {
-  height: calc(100vh - 96px);
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  display: grid;
-  gap: 1rem;
-  padding-right: 0.25rem;
-}
-
-.slide-page {
-  min-height: calc(100vh - 120px);
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-  }
-
-  .home-layout-slider {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-
-  .timeline-left {
-    position: static;
-  }
-
-  .timeline-list-vertical {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .home-slides {
-    height: auto;
-    overflow: visible;
-    scroll-snap-type: none;
-  }
-
-  .slide-page {
-    min-height: auto;
-    scroll-snap-align: none;
   }
 
   .displayflex {
