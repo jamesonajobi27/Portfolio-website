@@ -88,8 +88,8 @@ function SubsystemCard({ system }) {
 
 export default function Home() {
   const [scrollY, setScrollY] = React.useState(0);
-  const [pageGlow, setPageGlow] = React.useState({ x: 78, y: 20 });
-  const pagePointerTarget = React.useRef({ x: 78, y: 20 });
+  const [heroGlow, setHeroGlow] = React.useState({ x: 78, y: 20 });
+  const heroPointerTarget = React.useRef({ x: 78, y: 20 });
   const { visible, register } = useRevealAnimation();
 
   React.useEffect(() => {
@@ -105,9 +105,9 @@ export default function Home() {
     let rafId;
 
     function animateGlow() {
-      setPageGlow((current) => {
-        const nextX = current.x + (pagePointerTarget.current.x - current.x) * 0.12;
-        const nextY = current.y + (pagePointerTarget.current.y - current.y) * 0.12;
+      setHeroGlow((current) => {
+        const nextX = current.x + (heroPointerTarget.current.x - current.x) * 0.12;
+        const nextY = current.y + (heroPointerTarget.current.y - current.y) * 0.12;
         return { x: nextX, y: nextY };
       });
       rafId = window.requestAnimationFrame(animateGlow);
@@ -117,28 +117,23 @@ export default function Home() {
     return () => window.cancelAnimationFrame(rafId);
   }, []);
 
-  function handlePagePointerMove(event) {
+  function handleHeroPointerMove(event) {
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = ((event.clientX - bounds.left) / bounds.width) * 100;
     const y = ((event.clientY - bounds.top) / bounds.height) * 100;
 
-    pagePointerTarget.current = {
+    heroPointerTarget.current = {
       x: Math.min(100, Math.max(0, x)),
       y: Math.min(100, Math.max(0, y)),
     };
   }
 
-  function handlePagePointerLeave() {
-    pagePointerTarget.current = { x: 78, y: 20 };
+  function handleHeroPointerLeave() {
+    heroPointerTarget.current = { x: 78, y: 20 };
   }
 
   return (
-    <main
-      className="telemetry-page"
-      style={{ "--page-glow-x": `${pageGlow.x}%`, "--page-glow-y": `${pageGlow.y}%` }}
-      onPointerMove={handlePagePointerMove}
-      onPointerLeave={handlePagePointerLeave}
-    >
+    <main className="telemetry-page">
       <div className="telemetry-bg">
         <div className="grid-layer" style={{ transform: `translateY(${scrollY * 0.08}px)` }} />
         <div className="line-layer" style={{ transform: `translateY(${scrollY * 0.14}px)` }} />
@@ -149,6 +144,9 @@ export default function Home() {
         id="introduction"
         ref={(node) => register("introduction", node)}
         className={`panel hero-panel ${visible.introduction ? "is-visible" : ""}`}
+        style={{ "--hero-glow-x": `${heroGlow.x}%`, "--hero-glow-y": `${heroGlow.y}%` }}
+        onPointerMove={handleHeroPointerMove}
+        onPointerLeave={handleHeroPointerLeave}
       >
         <p className="kicker">MECHATRONICS ENGINEERING TELEMETRY INTERFACE</p>
         <h1 className="hero-name">James Onajobi</h1>
