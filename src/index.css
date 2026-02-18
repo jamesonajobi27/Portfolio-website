@@ -120,9 +120,6 @@ a {
 }
 
 
-.timeline-rail {
-  padding: 1rem;
-}
 
 .timeline-title {
   margin: 0;
@@ -132,12 +129,32 @@ a {
   color: var(--accent);
 }
 
+.home-layout-slider {
+  grid-template-columns: 220px 1fr;
+  align-items: start;
+  height: calc(100vh - 96px);
+}
+
+.timeline-left {
+  position: sticky;
+  top: 96px;
+  padding: 1rem;
+}
+
 .timeline-list {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
   padding-bottom: 10px;
+}
+
+.timeline-list-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  padding-bottom: 0;
+  padding-right: 10px;
 }
 
 .timeline-link {
@@ -151,6 +168,8 @@ a {
   align-items: center;
   gap: 0.5rem;
   transition: color 0.24s ease, border-color 0.24s ease;
+  background: color-mix(in srgb, var(--surface) 76%, transparent);
+  cursor: pointer;
 }
 
 .timeline-link.active {
@@ -169,7 +188,7 @@ a {
 .timeline-indicator {
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 0;
   height: 3px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -181,6 +200,62 @@ a {
   color: var(--accent);
   border-color: var(--accent);
 }
+
+.home-slides {
+  height: calc(100vh - 96px);
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  display: grid;
+  gap: 1rem;
+  padding-right: 0.25rem;
+}
+
+.slide-page {
+  min-height: calc(100vh - 120px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-layout-slider {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .timeline-left {
+    position: static;
+  }
+
+  .timeline-list-vertical {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .home-slides {
+    height: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .slide-page {
+    min-height: auto;
+    scroll-snap-align: none;
+  }
+
+  .displayflex {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
 
 .hero {
   padding: clamp(1rem, 3.5vw, 2rem);
@@ -395,16 +470,3 @@ label {
   margin: 0;
 }
 
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .timeline-list {
-    justify-content: flex-start;
-  }
-
-  .displayflex {
-    grid-template-columns: 1fr;
-  }
-}

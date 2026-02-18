@@ -44,11 +44,13 @@ const timeline = [
 
 export default function Home() {
   const [activeTimelineId, setActiveTimelineId] = React.useState("hero");
-  const [indicatorStyle, setIndicatorStyle] = React.useState({ width: 0, x: 0 });
+  const [indicatorStyle, setIndicatorStyle] = React.useState({ width: 0, x: 0, y: 0 });
   const linkRefs = React.useRef({});
+  const sectionRefs = React.useRef({});
+  const scrollRootRef = React.useRef(null);
 
   React.useEffect(() => {
-    const sections = timeline.map((item) => document.getElementById(item.id)).filter(Boolean);
+    const sections = timeline.map((item) => sectionRefs.current[item.id]).filter(Boolean);
 
     if (!sections.length) {
       return undefined;
@@ -65,9 +67,9 @@ export default function Home() {
         }
       },
       {
-        root: null,
-        rootMargin: "-35% 0px -50% 0px",
-        threshold: [0.2, 0.35, 0.5, 0.7],
+        root: scrollRootRef.current,
+        rootMargin: "-20% 0px -30% 0px",
+        threshold: [0.25, 0.4, 0.6, 0.8],
       },
     );
 
@@ -82,7 +84,7 @@ export default function Home() {
       return;
     }
 
-    setIndicatorStyle({ width: activeLink.offsetWidth, x: activeLink.offsetLeft });
+    setIndicatorStyle({ width: activeLink.offsetWidth, x: activeLink.offsetLeft, y: activeLink.offsetTop + activeLink.offsetHeight + 4 });
   }, [activeTimelineId]);
 
   React.useEffect(() => {
@@ -91,108 +93,116 @@ export default function Home() {
       if (!activeLink) {
         return;
       }
-      setIndicatorStyle({ width: activeLink.offsetWidth, x: activeLink.offsetLeft });
+      setIndicatorStyle({ width: activeLink.offsetWidth, x: activeLink.offsetLeft, y: activeLink.offsetTop + activeLink.offsetHeight + 4 });
     }
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [activeTimelineId]);
 
+  function jumpToSection(id) {
+    const section = sectionRefs.current[id];
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveTimelineId(id);
+    }
+  }
+
   return (
-    <main className="page-shell">
-      <section className="timeline-rail" aria-label="Page timeline">
+    <main className="page-shell home-layout-slider">
+      <aside className="timeline-rail timeline-left" aria-label="Page timeline">
         <p className="timeline-title">Timeline</p>
-        <div className="timeline-list">
+        <div className="timeline-list timeline-list-vertical">
           {timeline.map((item) => (
-            <a
+            <button
               key={item.href}
               className={`timeline-link ${activeTimelineId === item.id ? "active" : ""}`}
-              href={item.href}
               ref={(el) => {
                 linkRefs.current[item.id] = el;
               }}
-              onClick={() => setActiveTimelineId(item.id)}
+              onClick={() => jumpToSection(item.id)}
+              type="button"
             >
               <span className="timeline-dot" />
               {item.label}
-            </a>
+            </button>
           ))}
           <span
             className="timeline-indicator"
-            style={{ width: `${indicatorStyle.width}px`, transform: `translateX(${indicatorStyle.x}px)` }}
+            style={{ width: `${indicatorStyle.width}px`, transform: `translate(${indicatorStyle.x}px, ${indicatorStyle.y}px)` }}
           />
         </div>
-      </section>
+      </aside>
 
-      <section className="hero" id="hero">
-        <div>
-          <p className="kicker">Mechatronics Engineering Student</p>
-          <h1>Bridging Hardware, Software, and Real-World Systems</h1>
-          <p className="hero-copy">
-            I build systems where code, electronics, and physical behavior meet — from microcontroller-driven control
-            loops to software that organizes and surfaces engineering data.
-          </p>
-          <div className="hero-actions">
-            <a className="button-primary" href="/Repositories">View My Projects</a>
-            <a className="button-ghost" href="https://github.com/jamesonajobi27" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
+      <section className="home-slides" ref={scrollRootRef}>
+        <article className="slide-page hero" id="hero" ref={(el) => { sectionRefs.current.hero = el; }}>
+          <div>
+            <p className="kicker">Mechatronics Engineering Student</p>
+            <h1>Bridging Hardware, Software, and Real-World Systems</h1>
+            <p className="hero-copy">
+              I build systems where code, electronics, and physical behavior meet — from microcontroller-driven control
+              loops to software that organizes and surfaces engineering data.
+            </p>
+            <div className="hero-actions">
+              <a className="button-primary" href="/Repositories">View My Projects</a>
+              <a className="button-ghost" href="https://github.com/jamesonajobi27" target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="hero-photo-wrap">
-          <img alt="James Onajobi" src="/dancer.jpg" className="Myprofilepic" />
-        </div>
-      </section>
+          <div className="hero-photo-wrap">
+            <img alt="James Onajobi" src="/dancer.jpg" className="Myprofilepic" />
+          </div>
+        </article>
 
-      <section className="signal-divider" />
+        <article className="slide-page content-card" id="about" ref={(el) => { sectionRefs.current.about = el; }}>
+          <h2>About Me</h2>
+          <p>
+            I'm a mechatronics engineering student driven by building systems that connect software, electronics, and
+            physical hardware. I'm especially interested in robotics, embedded systems, and automation because they
+            combine analytical thinking with hands-on engineering.
+          </p>
+          <p>
+            Beyond technical work, I'm curious about psychology and personality frameworks, and I enjoy understanding
+            how both people and systems behave under pressure.
+          </p>
+        </article>
 
-      <section className="content-card" id="about">
-        <h2>About Me</h2>
-        <p>
-          I'm a mechatronics engineering student driven by building systems that connect software, electronics, and
-          physical hardware. I'm especially interested in robotics, embedded systems, and automation because they
-          combine analytical thinking with hands-on engineering.
-        </p>
-        <p>
-          Beyond technical work, I'm curious about psychology and personality frameworks, and I enjoy understanding
-          how both people and systems behave under pressure.
-        </p>
-      </section>
+        <article className="slide-page content-card" id="skills" ref={(el) => { sectionRefs.current.skills = el; }}>
+          <h2>Technical Skills</h2>
+          <div className="skills-grid">
+            {Object.entries(skills).map(([group, entries]) => (
+              <article className="skill-group" key={group}>
+                <h3>{group}</h3>
+                <ul>
+                  {entries.map((entry) => (
+                    <li key={entry}>{entry}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </article>
 
-      <section className="content-card" id="skills">
-        <h2>Technical Skills</h2>
-        <div className="skills-grid">
-          {Object.entries(skills).map(([group, entries]) => (
-            <article className="skill-group" key={group}>
-              <h3>{group}</h3>
-              <ul>
-                {entries.map((entry) => (
-                  <li key={entry}>{entry}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="content-card" id="experience">
-        <h2>Work Experience</h2>
-        <div className="experience-list">
-          {experiences.map((job) => (
-            <article className="experience-item" key={job.title}>
-              <div className="experience-head">
-                <h3>{job.title}</h3>
-                <p>{job.company}</p>
-                <span>{job.location}</span>
-              </div>
-              <ul>
-                {job.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+        <article className="slide-page content-card" id="experience" ref={(el) => { sectionRefs.current.experience = el; }}>
+          <h2>Work Experience</h2>
+          <div className="experience-list">
+            {experiences.map((job) => (
+              <article className="experience-item" key={job.title}>
+                <div className="experience-head">
+                  <h3>{job.title}</h3>
+                  <p>{job.company}</p>
+                  <span>{job.location}</span>
+                </div>
+                <ul>
+                  {job.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </article>
       </section>
     </main>
   );
