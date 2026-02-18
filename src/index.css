@@ -496,15 +496,21 @@ label {
   overflow: hidden;
 }
 
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--hero-glow-x, 78%) var(--hero-glow-y, 20%), rgba(111, 211, 216, 0.26), transparent 46%);
+}
+
 .hero-panel::after {
   content: "";
   position: absolute;
-  left: calc(var(--hero-glow-x, 78%) - 120px);
-  top: calc(var(--hero-glow-y, 20%) - 120px);
-  width: 240px;
-  height: 240px;
-  background: radial-gradient(circle, rgba(111, 211, 216, 0.28), transparent 68%);
-  transition: left 120ms linear, top 120ms linear;
+  inset: -30% -15%;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 38%, rgba(111, 211, 216, 0.1) 50%, transparent 62%);
+  animation: sweepTelemetry 7s linear infinite;
 }
 
 .hero-name {
