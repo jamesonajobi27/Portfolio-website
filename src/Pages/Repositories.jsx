@@ -42,6 +42,27 @@ const featuredProjects = [
 export default function Repositories() {
   const [loading, setLoading] = React.useState(true);
   const [repoData, setRepoData] = React.useState([]);
+  const [visible, setVisible] = React.useState({});
+  const [overviewGlow, setOverviewGlow] = React.useState({ x: 74, y: 24 });
+
+  const overviewTarget = React.useRef({ x: 74, y: 24 });
+
+  const register = React.useCallback((id, node) => {
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible((prev) => ({ ...prev, [id]: true }));
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(node);
+  }, []);
 
   React.useEffect(() => {
     async function loadRepos() {
@@ -59,18 +80,72 @@ export default function Repositories() {
     loadRepos();
   }, []);
 
+  React.useEffect(() => {
+    let rafId;
+
+    function animateGlow() {
+      setOverviewGlow((current) => {
+        const nextX = current.x + (overviewTarget.current.x - current.x) * 0.12;
+        const nextY = current.y + (overviewTarget.current.y - current.y) * 0.12;
+        return { x: nextX, y: nextY };
+      });
+      rafId = window.requestAnimationFrame(animateGlow);
+    }
+
+    rafId = window.requestAnimationFrame(animateGlow);
+    return () => window.cancelAnimationFrame(rafId);
+  }, []);
+
+  function handleOverviewPointerMove(event) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    overviewTarget.current = {
+      x: Math.min(100, Math.max(0, x)),
+      y: Math.min(100, Math.max(0, y)),
+    };
+  }
+
+  function handleOverviewPointerLeave() {
+    overviewTarget.current = { x: 74, y: 24 };
+  }
+
+  const signalData = [
+    { label: "Subsystems", value: `${featuredProjects.length} Modules` },
+    { label: "Live Repositories", value: loading ? "Syncing..." : `${repoData.length} Synced` },
+    { label: "Stack Coverage", value: "Embedded + Web" },
+  ];
+
   return (
     <main className="page-shell">
-      <section className="content-card">
+      <section
+        className={`content-card reveal-block project-overview ${visible.overview ? "is-visible" : ""}`}
+        ref={(node) => register("overview", node)}
+        style={{ "--overview-glow-x": `${overviewGlow.x}%`, "--overview-glow-y": `${overviewGlow.y}%` }}
+        onPointerMove={handleOverviewPointerMove}
+        onPointerLeave={handleOverviewPointerLeave}
+      >
         <h2>Project Systems Overview</h2>
         <p>
           My portfolio is structured like an engineering system: high-level overview first, then drill-down into
           implementation details. Hardware and software projects are both represented because real products require
           both.
         </p>
+        <div className="telemetry-signal-strip">
+          {signalData.map((signal, index) => (
+            <div
+              key={signal.label}
+              className="signal-pill"
+              style={{ "--signal-delay": `${index * 110}ms` }}
+            >
+              <span>{signal.label}</span>
+              <strong>{signal.value}</strong>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="project-grid">
+      <section className={`project-grid reveal-block ${visible.projects ? "is-visible" : ""}`} ref={(node) => register("projects", node)}>
         {featuredProjects.map((project) => (
           <article className="project-card" key={project.name}>
             <p className="project-time">{project.timeline}</p>
@@ -90,15 +165,20 @@ export default function Repositories() {
         ))}
       </section>
 
-      <section className="content-card">
+      <section className={`content-card reveal-block ${visible.repositories ? "is-visible" : ""}`} ref={(node) => register("repositories", node)}>
         <h2>GitHub Repository Feed</h2>
         <p>Live repositories from GitHub for code-level review.</p>
         {loading ? (
           <h3 className="loading">Loading repositories...</h3>
         ) : (
           <div className="DesignAllRepo">
-            {repoData.map((item) => (
-              <Link className="DesignOneRepo" to={`/Repositories/${item.id}`} key={item.id}>
+            {repoData.map((item, index) => (
+              <Link
+                className="DesignOneRepo"
+                to={`/Repositories/${item.id}`}
+                key={item.id}
+                style={{ "--repo-delay": `${index * 55}ms` }}
+              >
                 <div className="name">{item.name}</div>
                 <div className="Description">{item.description ?? "No description"}</div>
               </Link>
