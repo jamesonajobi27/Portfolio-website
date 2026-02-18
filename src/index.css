@@ -499,11 +499,12 @@ label {
 .hero-panel::after {
   content: "";
   position: absolute;
-  right: -80px;
-  top: -70px;
+  left: calc(var(--hero-glow-x, 78%) - 120px);
+  top: calc(var(--hero-glow-y, 20%) - 120px);
   width: 240px;
   height: 240px;
-  background: radial-gradient(circle, rgba(111, 211, 216, 0.22), transparent 68%);
+  background: radial-gradient(circle, rgba(111, 211, 216, 0.28), transparent 68%);
+  transition: left 120ms linear, top 120ms linear;
 }
 
 .hero-name {
@@ -723,4 +724,99 @@ label {
 @media (max-width: 760px) {
   .section-head { align-items: flex-start; flex-direction: column; }
   .signal-bar-row { grid-template-columns: 1fr; }
+}
+
+
+.reveal-block {
+  opacity: 0;
+  transform: translateY(20px) scale(0.985);
+  transition: transform 520ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 520ms ease;
+}
+
+.reveal-block.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.project-overview {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-overview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--overview-glow-x, 74%) var(--overview-glow-y, 24%), rgba(111, 211, 216, 0.24), transparent 46%);
+}
+
+.project-overview::after {
+  content: "";
+  position: absolute;
+  inset: -30% -15%;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 38%, rgba(111, 211, 216, 0.12) 50%, transparent 62%);
+  animation: sweepTelemetry 6.5s linear infinite;
+}
+
+@keyframes sweepTelemetry {
+  from { transform: translateX(-22%); }
+  to { transform: translateX(22%); }
+}
+
+.telemetry-signal-strip {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.6rem;
+}
+
+.signal-pill {
+  display: grid;
+  gap: 0.2rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border-radius: 12px;
+  padding: 0.55rem 0.7rem;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.project-overview.is-visible .signal-pill {
+  animation: signalPillIn 560ms ease forwards;
+  animation-delay: var(--signal-delay, 0ms);
+}
+
+.signal-pill span {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-label);
+}
+
+.signal-pill strong {
+  color: var(--accent);
+  font-size: 0.88rem;
+}
+
+@keyframes signalPillIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.DesignOneRepo {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: repoCardIn 460ms ease forwards;
+  animation-delay: var(--repo-delay, 0ms);
+}
+
+@keyframes repoCardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
