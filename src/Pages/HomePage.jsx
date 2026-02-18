@@ -21,13 +21,39 @@ const projects = [
   },
 ];
 
-const skills = [
-  { label: "Microcontrollers", value: 92 },
-  { label: "Circuit Analysis", value: 86 },
-  { label: "Embedded C/C++", value: 84 },
-  { label: "CAD / Mechanical Design", value: 80 },
-  { label: "Python + MATLAB", value: 78 },
-  { label: "Systems Integration", value: 88 },
+const subsystems = [
+  {
+    id: "embedded",
+    title: "Embedded Systems & Electronics",
+    items: ["ESP32", "Arduino", "Circuit analysis", "Sensors & actuators", "Motor drivers", "Soldering"],
+    bars: ["Analog I/O", "Digital control", "Power electronics", "Signal conditioning"],
+    status: { stability: "Operational", experience: "Operational", confidence: "Production-ready" },
+    visual: "trace",
+  },
+  {
+    id: "control",
+    title: "Control Logic & Computation",
+    items: ["C / C++", "Python", "MATLAB", "Real-time logic", "State machines", "Signal processing"],
+    bars: ["Input", "Processing", "Output"],
+    status: { stability: "Operational", experience: "Developing", confidence: "Operational" },
+    visual: "flow",
+  },
+  {
+    id: "mechanical",
+    title: "Mechanical Design & Prototyping",
+    items: ["AutoCAD", "SketchUp", "Solid modeling", "3D printing", "Fit & tolerance thinking"],
+    bars: ["Structure", "Fasteners", "Interfaces"],
+    status: { stability: "Production-ready", experience: "Operational", confidence: "Operational" },
+    visual: "cube",
+  },
+  {
+    id: "software",
+    title: "Engineering Software & Interfaces",
+    items: ["React", "Git", "APIs", "Web dashboards", "Data visualization"],
+    bars: ["Nodes", "Links", "Telemetry"],
+    status: { stability: "Operational", experience: "Operational", confidence: "Production-ready" },
+    visual: "network",
+  },
 ];
 
 function useRevealAnimation() {
@@ -87,6 +113,34 @@ function TiltCard({ title, description, tags }) {
         {tags.map((tag) => (
           <span key={tag} className="chip">{tag}</span>
         ))}
+      </div>
+    </article>
+  );
+}
+
+function SubsystemCard({ system }) {
+  return (
+    <article className={`subsystem-card subsystem-${system.visual}`}>
+      <h3>{system.title}</h3>
+      <ul>
+        {system.items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+
+      <div className="sub-bars">
+        {system.bars.map((bar) => (
+          <div key={bar} className="signal-bar-row">
+            <span>{bar}</span>
+            <div className="signal-bar" />
+          </div>
+        ))}
+      </div>
+
+      <div className="status-grid">
+        <div><label>Stability</label><span>{system.status.stability}</span></div>
+        <div><label>Experience</label><span>{system.status.experience}</span></div>
+        <div><label>Confidence</label><span>{system.status.confidence}</span></div>
       </div>
     </article>
   );
@@ -154,20 +208,12 @@ export default function Home() {
         className={`panel ${visible.skills ? "is-visible" : ""}`}
       >
         <div className="section-head">
-          <h2>Skills // System Diagnostics</h2>
-          <span className="signal">SCANNING</span>
+          <h2>Skills // Subsystem Diagnostics</h2>
+          <span className="signal">MONITORING</span>
         </div>
-        <div className="diagnostics-grid">
-          {skills.map((skill) => (
-            <div key={skill.label} className="diagnostic-row">
-              <div className="diagnostic-meta">
-                <span>{skill.label}</span>
-                <span>{skill.value}%</span>
-              </div>
-              <div className="progress-track">
-                <div className="progress-fill" style={{ width: `${visible.skills ? skill.value : 0}%` }} />
-              </div>
-            </div>
+        <div className="subsystem-grid">
+          {subsystems.map((system) => (
+            <SubsystemCard key={system.id} system={system} />
           ))}
         </div>
       </section>

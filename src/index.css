@@ -510,36 +510,137 @@ label {
 
 .telemetry-card:hover::before { opacity: 1; }
 
-.diagnostics-grid {
+.subsystem-grid {
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-.diagnostic-row {
+.subsystem-card {
+  position: relative;
+  overflow: hidden;
   background: color-mix(in srgb, var(--surface) 88%, transparent);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 0.75rem;
+  border-radius: 14px;
+  padding: 1rem;
 }
 
-.diagnostic-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.45rem;
-  font-size: 0.9rem;
+.subsystem-card h3 {
+  margin-bottom: 0.6rem;
+  color: var(--accent);
 }
 
-.progress-track {
-  height: 10px;
+.subsystem-card ul {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--muted);
+}
+
+.sub-bars {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.signal-bar-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.signal-bar {
+  height: 8px;
   border-radius: 999px;
-  background: rgba(132, 169, 196, 0.2);
+  background: linear-gradient(90deg, rgba(111, 211, 216, 0.2), rgba(80, 137, 216, 0.3));
+  position: relative;
   overflow: hidden;
 }
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  transition: width 1100ms cubic-bezier(0.2, 0.7, 0.2, 1);
+.signal-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(111, 211, 216, 0.8), transparent);
+  animation: scanBar 2s linear infinite;
+}
+
+@keyframes scanBar {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.status-grid {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.status-grid div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+}
+
+.status-grid label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.status-grid span {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.subsystem-embedded::before,
+.subsystem-control::before,
+.subsystem-mechanical::before,
+.subsystem-software::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.subsystem-embedded::before {
+  background-image: linear-gradient(rgba(111, 211, 216, 0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(111, 211, 216, 0.22) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.subsystem-control::before {
+  background: repeating-linear-gradient(90deg, transparent, transparent 26px, rgba(111, 211, 216, 0.25) 27px, transparent 28px);
+  animation: flowShift 5s linear infinite;
+}
+
+@keyframes flowShift {
+  from { transform: translateX(0); }
+  to { transform: translateX(28px); }
+}
+
+.subsystem-mechanical::before {
+  background: radial-gradient(circle at 30% 40%, rgba(111, 211, 216, 0.35), transparent 35%),
+              radial-gradient(circle at 70% 70%, rgba(80, 137, 216, 0.35), transparent 36%);
+  animation: rotateHint 8s linear infinite;
+}
+
+@keyframes rotateHint {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.subsystem-software::before {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(111, 211, 216, 0.8) 2px, transparent 3px),
+    radial-gradient(circle at 60% 45%, rgba(111, 211, 216, 0.8) 2px, transparent 3px),
+    radial-gradient(circle at 35% 70%, rgba(111, 211, 216, 0.8) 2px, transparent 3px),
+    linear-gradient(120deg, transparent 25%, rgba(111, 211, 216, 0.25) 26%, rgba(111, 211, 216, 0.25) 28%, transparent 29%);
 }
 
 .soft-panel {
@@ -557,4 +658,5 @@ label {
 
 @media (max-width: 760px) {
   .section-head { align-items: flex-start; flex-direction: column; }
+  .signal-bar-row { grid-template-columns: 1fr; }
 }
