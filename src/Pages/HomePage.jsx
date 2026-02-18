@@ -35,10 +35,28 @@ const experiences = [
   },
 ];
 
+const timeline = [
+  { label: "Hero", href: "#hero" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+];
+
 export default function Home() {
   return (
     <main className="page-shell">
-      <section className="hero">
+      <section className="timeline-card" aria-label="Page timeline">
+        <p className="timeline-title">Quick Timeline</p>
+        <div className="timeline-list">
+          {timeline.map((item) => (
+            <a key={item.href} className="timeline-link" href={item.href}>
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="hero" id="hero">
         <div>
           <p className="kicker">Mechatronics Engineering Student</p>
           <h1>Bridging Hardware, Software, and Real-World Systems</h1>
@@ -48,9 +66,6 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button-primary" href="/Repositories">View My Projects</a>
-            <a className="button-outline" href="/James_Onajobi_Resume.pdf" target="_blank" rel="noreferrer">
-              Download Resume (PDF)
-            </a>
             <a className="button-ghost" href="https://github.com/jamesonajobi27" target="_blank" rel="noreferrer">
               GitHub
             </a>
@@ -63,7 +78,7 @@ export default function Home() {
 
       <section className="signal-divider" />
 
-      <section className="content-card">
+      <section className="content-card" id="about">
         <h2>About Me</h2>
         <p>
           I'm a mechatronics engineering student driven by building systems that connect software, electronics, and
@@ -76,7 +91,7 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="content-card">
+      <section className="content-card" id="skills">
         <h2>Technical Skills</h2>
         <div className="skills-grid">
           {Object.entries(skills).map(([group, entries]) => (
@@ -92,7 +107,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-card">
+      <section className="content-card" id="experience">
         <h2>Work Experience</h2>
         <div className="experience-list">
           {experiences.map((job) => (
