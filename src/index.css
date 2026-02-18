@@ -438,6 +438,21 @@ label {
   gap: 1rem;
 }
 
+.telemetry-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 16px;
+  background: radial-gradient(circle at var(--page-glow-x, 78%) var(--page-glow-y, 20%), rgba(111, 211, 216, 0.18), transparent 42%);
+  z-index: 0;
+}
+
+.telemetry-page > * {
+  position: relative;
+  z-index: 1;
+}
+
 .telemetry-bg {
   position: fixed;
   inset: 0;
@@ -494,14 +509,6 @@ label {
 .hero-panel {
   position: relative;
   overflow: hidden;
-}
-
-.hero-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at var(--hero-glow-x, 78%) var(--hero-glow-y, 20%), rgba(111, 211, 216, 0.26), transparent 46%);
 }
 
 .hero-panel::after {
