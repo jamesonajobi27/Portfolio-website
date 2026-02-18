@@ -104,11 +104,67 @@ a {
   cursor: pointer;
 }
 
+.slider-toggle {
+  position: relative;
+  width: 124px;
+  height: 38px;
+  padding: 0;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
+
+.toggle-track {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  z-index: 1;
+}
+
+.toggle-option {
+  transition: color 0.2s ease;
+}
+
+.toggle-thumb {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: calc(50% - 4px);
+  height: calc(100% - 4px);
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 56%, var(--border));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--surface-2) 84%, var(--accent) 16%), color-mix(in srgb, var(--surface) 88%, var(--accent-2) 12%));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent), 0 6px 12px rgba(8, 13, 20, 0.28);
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.slider-toggle.is-light .toggle-thumb {
+  transform: translateX(100%);
+}
+
+.slider-toggle.is-dark .toggle-option:first-child,
+.slider-toggle.is-light .toggle-option:last-child {
+  color: var(--text);
+}
+
 .link:hover,
 .theme-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-1px);
+}
+
+.slider-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.slider-toggle:hover .toggle-thumb {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent), 0 8px 16px rgba(8, 13, 20, 0.34);
 }
 
 .page-shell {

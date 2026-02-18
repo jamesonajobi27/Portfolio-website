@@ -18,6 +18,8 @@ export default function Navbar() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   }
 
+  const isLight = theme === "light";
+
   return (
     <header className="nav-shell">
       <div className="brand">James Onajobi</div>
@@ -26,8 +28,18 @@ export default function Navbar() {
           <Link to="/" className="link">Home</Link>
           <Link to="/Repositories" className="link">Projects</Link>
         </nav>
-        <button className="theme-toggle" type="button" onClick={toggleTheme}>
-          {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
+        <button
+          className={`theme-toggle slider-toggle ${isLight ? "is-light" : "is-dark"}`}
+          type="button"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${isLight ? "dark" : "light"} mode`}
+          title={`Switch to ${isLight ? "dark" : "light"} mode`}
+        >
+          <span className="toggle-track" aria-hidden="true">
+            <span className="toggle-option">Dark</span>
+            <span className="toggle-option">Light</span>
+          </span>
+          <span className="toggle-thumb" aria-hidden="true" />
         </button>
       </div>
     </header>
