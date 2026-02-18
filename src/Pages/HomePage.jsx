@@ -99,10 +99,9 @@ export default function Home() {
   }, [activeTimelineId]);
 
   return (
-    <main className="page-shell home-layout">
-      <aside className="timeline-rail" aria-label="Page timeline">
+    <main className="page-shell">
+      <section className="timeline-rail" aria-label="Page timeline">
         <p className="timeline-title">Timeline</p>
-        <div className="timeline-track" />
         <div className="timeline-list">
           {timeline.map((item) => (
             <a
@@ -123,80 +122,78 @@ export default function Home() {
             style={{ width: `${indicatorStyle.width}px`, transform: `translateX(${indicatorStyle.x}px)` }}
           />
         </div>
-      </aside>
+      </section>
 
-      <div className="home-content">
-        <section className="hero" id="hero">
-          <div>
-            <p className="kicker">Mechatronics Engineering Student</p>
-            <h1>Bridging Hardware, Software, and Real-World Systems</h1>
-            <p className="hero-copy">
-              I build systems where code, electronics, and physical behavior meet — from microcontroller-driven control
-              loops to software that organizes and surfaces engineering data.
-            </p>
-            <div className="hero-actions">
-              <a className="button-primary" href="/Repositories">View My Projects</a>
-              <a className="button-ghost" href="https://github.com/jamesonajobi27" target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-            </div>
-          </div>
-          <div className="hero-photo-wrap">
-            <img alt="James Onajobi" src="/dancer.jpg" className="Myprofilepic" />
-          </div>
-        </section>
-
-        <section className="signal-divider" />
-
-        <section className="content-card" id="about">
-          <h2>About Me</h2>
-          <p>
-            I'm a mechatronics engineering student driven by building systems that connect software, electronics, and
-            physical hardware. I'm especially interested in robotics, embedded systems, and automation because they
-            combine analytical thinking with hands-on engineering.
+      <section className="hero" id="hero">
+        <div>
+          <p className="kicker">Mechatronics Engineering Student</p>
+          <h1>Bridging Hardware, Software, and Real-World Systems</h1>
+          <p className="hero-copy">
+            I build systems where code, electronics, and physical behavior meet — from microcontroller-driven control
+            loops to software that organizes and surfaces engineering data.
           </p>
-          <p>
-            Beyond technical work, I'm curious about psychology and personality frameworks, and I enjoy understanding
-            how both people and systems behave under pressure.
-          </p>
-        </section>
-
-        <section className="content-card" id="skills">
-          <h2>Technical Skills</h2>
-          <div className="skills-grid">
-            {Object.entries(skills).map(([group, entries]) => (
-              <article className="skill-group" key={group}>
-                <h3>{group}</h3>
-                <ul>
-                  {entries.map((entry) => (
-                    <li key={entry}>{entry}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+          <div className="hero-actions">
+            <a className="button-primary" href="/Repositories">View My Projects</a>
+            <a className="button-ghost" href="https://github.com/jamesonajobi27" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
           </div>
-        </section>
+        </div>
+        <div className="hero-photo-wrap">
+          <img alt="James Onajobi" src="/dancer.jpg" className="Myprofilepic" />
+        </div>
+      </section>
 
-        <section className="content-card" id="experience">
-          <h2>Work Experience</h2>
-          <div className="experience-list">
-            {experiences.map((job) => (
-              <article className="experience-item" key={job.title}>
-                <div className="experience-head">
-                  <h3>{job.title}</h3>
-                  <p>{job.company}</p>
-                  <span>{job.location}</span>
-                </div>
-                <ul>
-                  {job.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-      </div>
+      <section className="signal-divider" />
+
+      <section className="content-card" id="about">
+        <h2>About Me</h2>
+        <p>
+          I'm a mechatronics engineering student driven by building systems that connect software, electronics, and
+          physical hardware. I'm especially interested in robotics, embedded systems, and automation because they
+          combine analytical thinking with hands-on engineering.
+        </p>
+        <p>
+          Beyond technical work, I'm curious about psychology and personality frameworks, and I enjoy understanding
+          how both people and systems behave under pressure.
+        </p>
+      </section>
+
+      <section className="content-card" id="skills">
+        <h2>Technical Skills</h2>
+        <div className="skills-grid">
+          {Object.entries(skills).map(([group, entries]) => (
+            <article className="skill-group" key={group}>
+              <h3>{group}</h3>
+              <ul>
+                {entries.map((entry) => (
+                  <li key={entry}>{entry}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-card" id="experience">
+        <h2>Work Experience</h2>
+        <div className="experience-list">
+          {experiences.map((job) => (
+            <article className="experience-item" key={job.title}>
+              <div className="experience-head">
+                <h3>{job.title}</h3>
+                <p>{job.company}</p>
+                <span>{job.location}</span>
+              </div>
+              <ul>
+                {job.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

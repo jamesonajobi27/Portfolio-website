@@ -54,13 +54,13 @@ a {
   background: color-mix(in srgb, var(--bg) 84%, transparent);
   backdrop-filter: blur(10px);
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .nav-left {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
@@ -119,19 +119,8 @@ a {
   box-shadow: var(--shadow);
 }
 
-.home-layout {
-  grid-template-columns: 220px 1fr;
-  align-items: start;
-}
-
-.home-content {
-  display: grid;
-  gap: 1.2rem;
-}
 
 .timeline-rail {
-  position: sticky;
-  top: 92px;
   padding: 1rem;
 }
 
@@ -141,15 +130,6 @@ a {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
-}
-
-.timeline-track {
-  height: 100%;
-  width: 2px;
-  min-height: 160px;
-  background: linear-gradient(var(--accent), var(--accent-2));
-  opacity: 0.45;
-  margin: 0.8rem 0;
 }
 
 .timeline-list {
@@ -418,18 +398,6 @@ label {
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-  }
-
-  .home-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .timeline-rail {
-    position: static;
-  }
-
-  .timeline-track {
-    display: none;
   }
 
   .timeline-list {
