@@ -1,10 +1,11 @@
 import React from "react"
 
+const PROFILE_IMAGE_PATH = "/dancer.jpg"
 
 export default function Home(){
     return(
       <div className="Home">
-        <img alt="My Picture" src="\dancer.jpg" className="Myprofilepic" />
+        <img alt="My Picture" src={PROFILE_IMAGE_PATH} className="Myprofilepic" />
 
         <div className="bio">
           <span>Hi there,</span>
