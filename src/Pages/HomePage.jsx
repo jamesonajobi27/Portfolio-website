@@ -155,7 +155,7 @@ export default function Home() {
           Designing reliable engineering systems where control logic, electronics, and physical behavior work as one.
         </p>
         <div className="hero-actions">
-          <a className="button-primary resume-pulse" href="/James_Onajobi_Resume.pdf" target="_blank" rel="noreferrer">
+          <a className="button-primary resume-pulse" href="/James Onajobi Resume.pdf" target="_blank" rel="noreferrer">
             Download Resume
           </a>
         </div>
